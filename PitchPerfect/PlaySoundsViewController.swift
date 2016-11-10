@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+
 class PlaySoundsViewController: UIViewController {
     
     @IBOutlet weak var snailButton: UIButton!
@@ -19,6 +20,8 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var reverbButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     
+    
+    
     var recordedAudioURL: NSURL!
     var audioFile: AVAudioFile!
     var audioEngine: AVAudioEngine!
@@ -27,6 +30,7 @@ class PlaySoundsViewController: UIViewController {
     
     enum ButtonType: Int { case Slow = 0, Fast, Chipmunk, Vader, Echo, Reverb }
     
+
     
     
     @IBAction func playSoundForButton(_ sender: UIButton) {
@@ -44,6 +48,14 @@ class PlaySoundsViewController: UIViewController {
             playSound(echo: true)
         case .Reverb:
             playSound(reverb: true)
+            
+            // snailButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+         //   chipmunkButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+         //   rabbitButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+         //   vaderButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+          //  echoButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+          //  reverbButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+           // stopButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
             
         }
         configureUI(playState: .Playing)
@@ -67,10 +79,7 @@ class PlaySoundsViewController: UIViewController {
         configureUI(playState: .NotPlaying)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+   
     
 
     /*

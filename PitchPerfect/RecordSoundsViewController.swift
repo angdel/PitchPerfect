@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RecordSoundsViewController.swift
 //  PitchPerfect
 //
 //  Created by Angel Delgado on 10/7/16.
@@ -24,10 +24,6 @@ class RecordSoundsViewController: UIViewController , AVAudioRecorderDelegate {
        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     @IBAction func recordAudio(_ sender: AnyObject) {
         print("Button Pressed")
@@ -64,22 +60,21 @@ class RecordSoundsViewController: UIViewController , AVAudioRecorderDelegate {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print("ViewWillAppear Called")
-    }
+    
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("AVAudioRedorder did Finish Recording")
         if (flag) {
-        self.performSegue(withIdentifier: "StopRecording", sender: audioRecorder.url)
+        performSegue(withIdentifier: "StopRecording", sender: audioRecorder.url)
         } else {
             print("Saving of Recording Failed")
         }
-        func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-            if (segue.identifier == "stopRecording") {
-                let playSoundsVC = segue.destination as! PlaySoundsViewController
-                let recordedAudioURL = sender as! NSURL
-                playSoundsVC.recordedAudioURL = recordedAudioURL
+      
             }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "StopRecording") {
+            let playSoundsVC = segue.destination as! PlaySoundsViewController
+            let recordedAudioURL = sender as! NSURL
+            playSoundsVC.recordedAudioURL = recordedAudioURL
         }
     }
 }
